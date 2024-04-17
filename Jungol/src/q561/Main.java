@@ -26,7 +26,7 @@ public class Main {
 				}
 			}
 		}
-		if(min<=1) {
+		if(min<1) {
 			min=100;
 		}
 		if(max>=10000) {
