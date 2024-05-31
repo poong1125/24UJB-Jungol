@@ -1,53 +1,56 @@
 package q1338;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
 public class Main {
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int input = sc.nextInt();
-		int spb = 1;
-		int inpp = 0;
-		int minus = input - 1;
-		char Astart = 'A';
-		char Astart2 = 'A';
-		sc.close();
+	public static void main(String[] args) throws IOException {
+		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
+		String spacebar ="";
+		int spacebar_num = 1;
+		int input = Integer.parseInt(bf.readLine());
+		int sp_count = 0;
+		char Ast = 'A';
+		char Ast2 = 'A';
+		int ing = 1;
 		
-		for(int i = 0; i < input; i++) {
-			minus = input-1;
-			for(int o = 0; o < input-spb ; o++) {
-				System.out.print("  ");
-			}
-			spb++;
-			for(int o = 0; o < 1 + inpp ; o ++) {
-				if(1 <= o) {
+		for( int i = 0; i < input; i++) {
+			spacebar = "";
+			sp_count = 0;
+			ing=1;
+			for( int o = 0; o < input; o++ ) {
+				if(o < input - spacebar_num) {
+					spacebar += "  ";
+					sp_count++;
+				}else if((input-1)-i == sp_count) {
+					if(90 < Ast) {
+						Ast -= 26;
+					}
+					spacebar += Ast;
+					Ast2 = Ast;
+					Ast++;
+					sp_count++;
+				}else {
+					Ast2 += (input)-ing;
 					for(;;) {
-					if(65 <= (Astart2 + minus) && (Astart2 + minus) <= 90) {
-						break;
-					}else {
-						Astart2 -= 26;
+					if(90 < Ast2) {Ast2-=26;}
+					else {break;}
 					}
-					}
-					System.out.print((char)(Astart2 + minus)+" ");
-					Astart2 = (char) (Astart2 + minus);
-					minus--;
-					
-				}else if(o == 0){
-					if(65 <= Astart && Astart < 91) {
-					}else {
-						Astart -= 26;
-					}
-				System.out.print(Astart + " ");
-				Astart2 = Astart;
-				Astart++;
+					spacebar += " " + Ast2;
+					ing++;
 				}
 			}
-			inpp++;
-			System.out.println();
+			spacebar_num++;
+			bw.write(spacebar+"\n");
+			bw.flush();
+			sp_count++;
 		}
 	}
-	
-	
+
 }
 
